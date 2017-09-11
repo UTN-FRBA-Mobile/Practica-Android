@@ -7,9 +7,9 @@
     tools:context="ar.edu.utn.frba.practica.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:src="@raw/imagen" />
 
 </LinearLayout>
