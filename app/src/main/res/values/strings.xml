@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Practica</string>
     <string name="action_settings">Settings</string>
+
+    <string name="termsAndConditions">Términos y Condiciones</string>
+    <string name="acceptMenu">Aceptar</string>
+    <string name="dontAcceptMenu">No aceptar</string>
+    <string name="accept">Aceptaste los términos y condiciones. Grosso.</string>
+    <string name="dontAccept">Aceptá los terminos y condiciones, dale.</string>
+    <string name="static_local">local estática</string>
+    <string name="dynamic_local">local dinámica</string>
+    <string name="remote">remota</string>
+    <string name="paragraph_n">Párrafo %d</string>
+    <string name="dynamic_button">Botón</string>
 </resources>
