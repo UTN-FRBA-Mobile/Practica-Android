@@ -119,9 +119,9 @@ public class MainActivityFragment extends Fragment {
     private void launchGalleryIntent() {
         //Creamos y lanzamos un intent de tipo "ACTION_PICK": Todas las apps que tengan Activities que sepan responder a este tipo de Intents serán mostradas por el sistema operativo, y el usuario será libre de seleccionar la que prefiera
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
         //Verificamos que el sistema operativo tenga al menos una App q pueda responder a este tipo de Intent. Sino mostramos un error.
         if (photoPickerIntent.resolveActivity(getContext().getPackageManager()) != null) {
-            photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, REQUEST_GALLERY_PICTURE);
         } else {
             Toast.makeText(getContext(), "Al parecer tu dispositivo no cuenta con ninguna aplicación para tomar fotos.", Toast.LENGTH_LONG).show();
