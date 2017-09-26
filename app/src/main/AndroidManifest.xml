@@ -3,7 +3,8 @@
     package="ar.edu.utn.frba.practica">
 
     <uses-feature android:name="android.hardware.camera" android:required="true" />
-    <!--REEMPLAZAR POR CÓDIGO: Aca se informa que la app requiere permisos para escribir en External Storage-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"

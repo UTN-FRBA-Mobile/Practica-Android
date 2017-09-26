@@ -1,14 +1,18 @@
 package ar.edu.utn.frba.practica;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -83,11 +87,11 @@ public class MainActivityFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                //REEMPLAZAR POR CÓDIGO: if (meDioPermisos()) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     launchCameraIntent();
-                //} else {
-                //    Toast.makeText(getContext(), "Lo sentimos, sin acceso al almacenamiento no podemos cambiar la foto de perfil.", Toast.LENGTH_LONG).show();
-                //}
+                } else {
+                    Toast.makeText(getContext(), "Lo sentimos, sin acceso al almacenamiento no podemos cambiar la foto de perfil.", Toast.LENGTH_LONG).show();
+                }
                 return;
             }
         }
@@ -129,15 +133,15 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void launchCamera() {
-//REEMPLAZAR POR CÓDIGO: if(TengoPermisosPara(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-//REEMPLAZAR POR CÓDIGO: if (DeberíaMostrarExplicaciónSobreElPorqueNecesitoEsteAcceso(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-//                showStoragePermissionExplanation();
-//            } else {
-//                dispatchStoragePermissionRequest();
-//            }
-//        } else {
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                showStoragePermissionExplanation();
+            } else {
+                dispatchStoragePermissionRequest();
+            }
+        } else {
             launchCameraIntent();
-//        }
+        }
     }
 
     private void showStoragePermissionExplanation() {
@@ -155,7 +159,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void dispatchStoragePermissionRequest() {
-        //REEMPLAZAR POR CÓDIGO: PedirPermisos();
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
     }
 
     private void launchCameraIntent() {
